@@ -1,0 +1,41 @@
+# ═══════════════════════════════════════════════════════
+#  MAESTRIA-Lite Configuration
+#  Environment: production
+# ═══════════════════════════════════════════════════════
+
+maestria:
+  version: "2.4.1"
+  environment: production
+
+  engine:
+    instance_id: "MAESTRIA-PROD-001"
+    worker_count: 4
+    queue_backend: redis            # memory | redis
+    queue_max_size: 10000
+    max_retries: 3
+    drain_timeout_seconds: 30.0
+    max_message_size: 1048576       # 1 MB
+
+  interfaces:
+    contract_dir: config/contracts/
+    strict_validation: true
+    hl7_version: "2.5.1"
+    hl7_encoding: unicode
+    field_separator: "|"
+
+  security:
+    cve_scan_interval: 86400        # 24 hours (seconds)
+    sbom_format: cyclonedx
+    compliance_framework: iec62443
+    tls_enabled: true
+    tls_min_version: "1.2"
+
+  patches:
+    cycle: quarterly
+    require_signature: true
+    rollback_retention: 3
+
+  monitoring:
+    metrics_port: 9090
+    health_port: 8080
+    audit_format: cef               # Common Event Format

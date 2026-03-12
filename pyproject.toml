@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maestria-lite"
+version = "2.4.1"
+description = "Industrial middleware for in-vitro diagnostic environments — message routing, HL7v2 processing, cybersecurity compliance, and patch lifecycle management."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "MAESTRIA-Lite Contributors"}
+]
+keywords = ["middleware", "ivd", "diagnostics", "hl7", "medical", "cybersecurity", "iec62304"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "pyyaml>=6.0.1",
+    "jsonschema>=4.21",
+    "pydantic>=2.6",
+    "structlog>=24.1",
+    "cryptography>=42.0",
+    "aiohttp>=3.9",
+    "prometheus-client>=0.20",
+    "click>=8.1",
+    "rich>=13.7",
+    "redis>=5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "pytest-asyncio>=0.23",
+    "mypy>=1.8",
+    "ruff>=0.2",
+    "pre-commit>=3.6",
+    "safety>=3.0",
+    "bandit>=1.7",
+]
+
+[project.scripts]
+maestria-lite = "maestria.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/your-username/maestria-lite"
+Documentation = "https://maestria-lite.readthedocs.io"
+Repository = "https://github.com/your-username/maestria-lite"
+Issues = "https://github.com/your-username/maestria-lite/issues"
+
+[tool.setuptools.packages.find]
+include = ["maestria*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "DTZ", "T20", "ICN"]
+ignore = ["S101"]  # Allow assert in tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "integration: marks tests requiring external services",
+    "security: marks security-related tests",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.coverage.run]
+source = ["maestria"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.",
+]

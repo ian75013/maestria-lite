@@ -1,0 +1,35 @@
+{
+  "contract_id": "analyzer-orm-v1",
+  "name": "Analyzer Instruments — ORM Order Contract",
+  "version": "1.0.0",
+  "system_id": "analyzer-fleet",
+  "direction": "outbound",
+  "message_types": ["ORM"],
+  "status": "active",
+  "description": "Defines the expected format for ORM (Order) messages sent from MAESTRIA to laboratory analyzers. Orders must include MSH, PID, ORC, and OBR segments.",
+  "schema": {
+    "type": "object",
+    "required": ["message_type", "segments"],
+    "properties": {
+      "message_type": {
+        "type": "string",
+        "enum": ["ORM"]
+      },
+      "segments": {
+        "type": "object",
+        "required": ["msh", "orc"],
+        "properties": {
+          "msh": { "type": "array", "minItems": 1 },
+          "pid": { "type": "array" },
+          "orc": { "type": "array", "minItems": 1 },
+          "obr": { "type": "array" }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "owner": "instrument-integration",
+    "instrument_models": ["VITEK-2", "VIDAS-3", "BioFire-FilmArray"],
+    "last_review_date": "2024-02-15"
+  }
+}

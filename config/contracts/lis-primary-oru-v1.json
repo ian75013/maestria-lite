@@ -1,0 +1,58 @@
+{
+  "contract_id": "lis-primary-oru-v1",
+  "name": "LIS Primary — ORU Result Contract",
+  "version": "1.2.0",
+  "system_id": "lis-primary",
+  "direction": "outbound",
+  "message_types": ["ORU"],
+  "status": "active",
+  "description": "Defines the expected format for ORU (Observation Result) messages sent from MAESTRIA to the primary LIS. All result messages must include MSH, PID, OBR, and at least one OBX segment.",
+  "schema": {
+    "type": "object",
+    "required": ["message_type", "trigger_event", "version", "segments"],
+    "properties": {
+      "message_type": {
+        "type": "string",
+        "enum": ["ORU"]
+      },
+      "trigger_event": {
+        "type": "string",
+        "enum": ["R01", "R30", "R31"]
+      },
+      "version": {
+        "type": "string",
+        "pattern": "^2\\.[0-9]+(\\.[0-9]+)?$"
+      },
+      "control_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "segments": {
+        "type": "object",
+        "required": ["msh", "obr", "obx"],
+        "properties": {
+          "msh": {
+            "type": "array",
+            "minItems": 1
+          },
+          "pid": {
+            "type": "array"
+          },
+          "obr": {
+            "type": "array",
+            "minItems": 1
+          },
+          "obx": {
+            "type": "array",
+            "minItems": 1
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "owner": "integration-team",
+    "reviewed_by": "quality-assurance",
+    "last_review_date": "2024-03-01"
+  }
+}

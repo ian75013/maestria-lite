@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="core-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="mod-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460"/>
+      <stop offset="100%" style="stop-color:#162447"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" rx="12" fill="#0a0a1a"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#e94560" font-size="18" font-weight="bold">🧬 MAESTRIA-Lite Architecture</text>
+
+  <!-- Core box -->
+  <rect x="50" y="55" width="800" height="300" rx="10" fill="url(#core-grad)" stroke="#e94560" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="80" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">MAESTRIA-Lite Core Engine</text>
+
+  <!-- Modules -->
+  <rect x="75" y="95" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#533483" stroke-width="1"/>
+  <text x="155" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">HL7v2 Parser</text>
+  <text x="155" y="140" text-anchor="middle" fill="#aaa" font-size="9">ORM · ORU · ADT · ACK</text>
+  <text x="155" y="155" text-anchor="middle" fill="#aaa" font-size="9">MSH · PID · OBX · OBR</text>
+
+  <rect x="255" y="95" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#533483" stroke-width="1"/>
+  <text x="335" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Contract Validator</text>
+  <text x="335" y="140" text-anchor="middle" fill="#aaa" font-size="9">JSON Schema</text>
+  <text x="335" y="155" text-anchor="middle" fill="#aaa" font-size="9">Versioned Contracts</text>
+
+  <rect x="435" y="95" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#533483" stroke-width="1"/>
+  <text x="515" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Message Router</text>
+  <text x="515" y="140" text-anchor="middle" fill="#aaa" font-size="9">Content-Based Routing</text>
+  <text x="515" y="155" text-anchor="middle" fill="#aaa" font-size="9">Broadcast · Round Robin</text>
+
+  <rect x="615" y="95" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#533483" stroke-width="1"/>
+  <text x="695" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Event Bus</text>
+  <text x="695" y="140" text-anchor="middle" fill="#aaa" font-size="9">Async Pub/Sub</text>
+  <text x="695" y="155" text-anchor="middle" fill="#aaa" font-size="9">Audit Trail</text>
+
+  <!-- Arrows row 1 -->
+  <line x1="235" y1="130" x2="255" y2="130" stroke="#e94560" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="415" y1="130" x2="435" y2="130" stroke="#e94560" stroke-width="1.5"/>
+  <line x1="595" y1="130" x2="615" y2="130" stroke="#e94560" stroke-width="1.5"/>
+
+  <!-- Row 2 -->
+  <rect x="75" y="185" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#e94560" stroke-width="1"/>
+  <text x="155" y="212" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">🔒 Security Module</text>
+  <text x="155" y="230" text-anchor="middle" fill="#aaa" font-size="9">CVE Tracker · SBOM</text>
+  <text x="155" y="245" text-anchor="middle" fill="#aaa" font-size="9">Compliance Engine</text>
+
+  <rect x="255" y="185" width="160" height="70" rx="8" fill="url(#mod-grad)" stroke="#e94560" stroke-width="1"/>
+  <text x="335" y="212" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">📦 Patch Manager</text>
+  <text x="335" y="230" text-anchor="middle" fill="#aaa" font-size="9">POA&amp;M · Signed Logs</text>
+  <text x="335" y="245" text-anchor="middle" fill="#aaa" font-size="9">Rollback · Traceability</text>
+
+  <rect x="435" y="185" width="340" height="70" rx="8" fill="url(#mod-grad)" stroke="#533483" stroke-width="1"/>
+  <text x="605" y="212" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">📊 Monitoring &amp; Observability</text>
+  <text x="605" y="230" text-anchor="middle" fill="#aaa" font-size="9">Prometheus Metrics · Health Checks · SIEM Audit Logging (CEF)</text>
+
+  <!-- Pipeline -->
+  <rect x="75" y="275" width="700" height="55" rx="8" fill="#1a1a3e" stroke="#533483" stroke-width="1"/>
+  <text x="425" y="298" text-anchor="middle" fill="#e94560" font-size="11" font-weight="bold">Processing Pipeline</text>
+  <text x="425" y="318" text-anchor="middle" fill="#aaa" font-size="10">Parse → Validate → Transform → Route → Acknowledge</text>
+
+  <!-- External systems -->
+  <rect x="50" y="390" width="200" height="60" rx="8" fill="#162447" stroke="#0f3460" stroke-width="1.5"/>
+  <text x="150" y="415" text-anchor="middle" fill="#e94560" font-size="12" font-weight="bold">🔬 Analyzers</text>
+  <text x="150" y="435" text-anchor="middle" fill="#aaa" font-size="9">VITEK · VIDAS · BioFire</text>
+
+  <rect x="300" y="390" width="200" height="60" rx="8" fill="#162447" stroke="#0f3460" stroke-width="1.5"/>
+  <text x="400" y="415" text-anchor="middle" fill="#e94560" font-size="12" font-weight="bold">🏥 LIS Systems</text>
+  <text x="400" y="435" text-anchor="middle" fill="#aaa" font-size="9">Laboratory Information</text>
+
+  <rect x="550" y="390" width="200" height="60" rx="8" fill="#162447" stroke="#0f3460" stroke-width="1.5"/>
+  <text x="650" y="415" text-anchor="middle" fill="#e94560" font-size="12" font-weight="bold">🏢 HIS / EHR</text>
+  <text x="650" y="435" text-anchor="middle" fill="#aaa" font-size="9">Hospital Information</text>
+
+  <!-- Connection lines -->
+  <line x1="150" y1="355" x2="150" y2="390" stroke="#533483" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="400" y1="355" x2="400" y2="390" stroke="#533483" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="650" y1="355" x2="650" y2="390" stroke="#533483" stroke-width="2" stroke-dasharray="5,3"/>
+
+  <!-- Compliance badges -->
+  <rect x="80" y="475" width="80" height="24" rx="12" fill="#e94560"/>
+  <text x="120" y="492" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">IEC 62304</text>
+
+  <rect x="175" y="475" width="100" height="24" rx="12" fill="#533483"/>
+  <text x="225" y="492" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">ISO 27001</text>
+
+  <rect x="290" y="475" width="110" height="24" rx="12" fill="#0f3460"/>
+  <text x="345" y="492" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">FDA 21 CFR 11</text>
+
+  <rect x="415" y="475" width="90" height="24" rx="12" fill="#162447" stroke="#533483" stroke-width="1"/>
+  <text x="460" y="492" text-anchor="middle" fill="#aaa" font-size="9" font-weight="bold">IEC 62443</text>
+
+  <rect x="520" y="475" width="70" height="24" rx="12" fill="#162447" stroke="#533483" stroke-width="1"/>
+  <text x="555" y="492" text-anchor="middle" fill="#aaa" font-size="9" font-weight="bold">HIPAA</text>
+</svg>

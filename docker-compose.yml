@@ -1,0 +1,92 @@
+# ═══════════════════════════════════════════════════════
+#  MAESTRIA-Lite — Docker Compose Stack
+#  Middleware + Redis + Prometheus + Grafana
+# ═══════════════════════════════════════════════════════
+
+services:
+  # ── Core Middleware ──
+  maestria-core:
+    build:
+      context: .
+      target: production
+    container_name: maestria-core
+    ports:
+      - "8080:8080"   # Health checks
+      - "9090:9090"   # Prometheus metrics
+    environment:
+      - MAESTRIA_ENV=production
+      - MAESTRIA_QUEUE_BACKEND=redis
+      - MAESTRIA_REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./config:/app/config:ro
+      - maestria-logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - maestria-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "2.0"
+
+  # ── Message Queue Backend ──
+  redis:
+    image: redis:7-alpine
+    container_name: maestria-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - maestria-net
+
+  # ── Metrics Collection ──
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: maestria-prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      - maestria-core
+    restart: unless-stopped
+    networks:
+      - maestria-net
+
+  # ── Monitoring Dashboard ──
+  grafana:
+    image: grafana/grafana:latest
+    container_name: maestria-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=maestria
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - maestria-net
+
+volumes:
+  maestria-logs:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  maestria-net:
+    driver: bridge
