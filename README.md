@@ -1,3 +1,7 @@
+Copyright © 2026 Doctum Consilium – Yann Smatti.
+All rights reserved.
+Proprietary and confidential.
+Unauthorized copying, modification, distribution, use, or reverse engineering is strictly prohibited.
 # 🧬 MAESTRIA-Lite — Industrial Diagnostic Middleware
 
 <p align="center">
